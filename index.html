@@ -14,6 +14,38 @@
     />
   </head>
   <body>
+    <header>
+      <div class="logo">
+        <img src="logo.png" alt="logo-apki" />
+      </div>
+    </header>
+    <section>
+      <div id="calculator"></div>
+    </section>
+    <section class="table">
+      <div class="table-container">
+        <div class="left">
+          <div id="income-header">
+            <p>PRZYCHODY</p>
+            <input id="income-name" />
+            <input id="income-value" />
+            <button id="button">Dodaj</button>
+          </div>
+          <ul id="income-list"></ul>
+          <div id="income-sum"></div>
+        </div>
+        <div class="right">
+          <div id="expenses-header">
+            <p>WYDATKI</p>
+            <input id="expenses-name" />
+            <input id="expenses-value" />
+            <button id="button">Dodaj</button>
+          </div>
+          <ul id="expenses-list"></ul>
+          <div id="expenses-sum"></div>
+        </div>
+      </div>
+    </section>
     <script src="script.js"></script>
   </body>
 </html>
