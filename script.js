@@ -37,7 +37,6 @@ listInc.id = "income-element";
 listInc.classList.add("li-income");
 document.incomeList.appendChild(listInc);
 
-button.addEventListener("click", (e) => {
+button.addEventListener("click", () => {
   listInc.innerText = `${nameInc} - ${amountInc}`;
-  return e;
 });

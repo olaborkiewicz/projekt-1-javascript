@@ -22,32 +22,50 @@ body {
 
 .table-container {
   display: flex;
-  width: 600px;
-  height: fit-content;
+  width: 1000px;
+  height: 700px;
   margin: 0 auto;
 }
 
-.left {
-  display: flex;
-  width: 50%;
-  height: 700px;
-  border: 2px solid #000;
-  background-image: linear-gradient(0deg, #2a67bb26, transparent);
-}
-
+.left,
 .right {
   display: flex;
+  flex-direction: column;
   width: 50%;
-  height: 700px;
+  height: 100%;
   border: 2px solid #000;
   background-image: linear-gradient(0deg, #2a67bb26, transparent);
 }
 
 #income-header,
 #expenses-header {
+  width: 100%;
   font-size: 20px;
   color: #000;
   font-family: "Playfair Display", serif;
   margin-left: 10px;
+  margin-bottom: 20px;
   font-weight: 500;
+}
+
+#button {
+  margin-left: 25px;
+}
+
+#income-sum,
+#expenses-sum {
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  margin: auto auto 15px 15px;
+}
+
+.form {
+  display: flex;
+}
+
+#income-list,
+#expenses-list {
+  display: flex;
+  flex-direction: column;
 }
