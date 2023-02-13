@@ -7,77 +7,126 @@ name: String;
 value: Number;
 */
 
-const calculator = document.getElementById("#calculator");
-const incomeHeader = document.getElementById("#income-header");
-const incomeName = document.getElementById("#income-name");
-const incomeValue = document.getElementById("#income-value");
-const incomeList = document.getElementById("#income-list");
-const incomeSum = document.getElementById("#income-sum");
-const expensesHeader = document.getElementById("#expenses-header");
-const expensesName = document.getElementById("#expenses-name");
-const expensesValue = document.getElementById("#expenses-value");
-const expensesList = document.getElementById("#expenses-list");
-const expensesSum = document.getElementById("#expenses-sum");
-const button = document.getElementById("#button");
+const calculator = document.querySelector("#calculator");
+const incomeHeader = document.querySelector("#income-header");
+const incomeName = document.querySelector("#income-name");
+const incomeValue = document.querySelector("#income-value");
+const incomeList = document.querySelector("#income-list");
+const incomeSum = document.querySelector("#income-sum");
+const expensesHeader = document.querySelector("#expenses-header");
+const expensesName = document.querySelector("#expenses-name");
+const expensesValue = document.querySelector("#expenses-value");
+const expensesList = document.querySelector("#expenses-list");
+const expensesSum = document.querySelector("#expenses-sum");
+const incForm = document.querySelector("#inc-form");
+const expForm = document.querySelector("#exp-form");
 
 const renderInc = (inc) => {
+  const Edit = document.createElement("button");
+  Edit.classList.add("button");
+  Edit.innerText = "Edytuj";
+
+  const Remove = document.createElement("button");
+  Remove.classList.add("button");
+  Remove.innerText = "Usuń";
+
   const newInc = document.createElement("div");
   newInc.id = "inc-${inc.id}";
   newInc.classList.add("incList");
 
   const incTitle = document.createElement("p");
   incTitle.classList.add("inc-title");
-  incTitle.innerHTML = `<span>${inc.name}</span>`;
+  incTitle.innerHTML = `<span>${inc.name} - ${inc.value}</span>`;
   newInc.appendChild(incTitle);
+  newInc.appendChild(Edit);
+  newInc.appendChild(Remove);
 
   incomeList.appendChild(newInc);
 };
 
 const renderExp = (exp) => {
+  const Edit = document.createElement("button");
+  Edit.classList.add("button");
+  Edit.innerText = "Edytuj";
+
+  const Remove = document.createElement("button");
+  Remove.classList.add("button");
+  Remove.innerText = "Usuń";
+
   const newExp = document.createElement("div");
   newExp.id = "exp-${exp.id}";
   newExp.classList.add("expList");
 
   const expTitle = document.createElement("p");
   expTitle.classList.add("exp-title");
-  expTitle.innerHTML = `<span>${exp.name}</span>`;
+  expTitle.innerHTML = `<span>${exp.name} - ${exp.value}</span>`;
   newExp.appendChild(expTitle);
+  newExp.appendChild(Edit);
+  newExp.appendChild(Remove);
 
   expensesList.appendChild(newExp);
 };
 
-const addElement = (event) => {
+/*const renderEl = (element) => {
+  const newEl = document.createElement("div");
+  newEl.id = "el-${id}";
+  newEl.classList.add("list");
+
+  const elTitle = document.createElement("p");
+  elTitle.classList.add("el-title");
+  elTitle.innerHTML = `<span>${element.name} - ${element.value}</span>`;
+  newEl.appendChild(elTitle);
+
+  if (element.type === "INCOME") {
+    incomeList.appendChild(newEl);
+  } else element.type === "EXPENSE";
+  expensesList.appendChild(newEl);
+};*/
+
+console.log("PAGE LOADED");
+
+const addElement = (event, type) => {
   event.preventDefault();
-  const nameInc = incomeName.value;
-  console.log(nameInc);
+  let name, value;
+  if (type === "INCOME") {
+    name = incomeName.value;
+    value = incomeValue.value;
+  }
+  if (type === "EXPENSE") {
+    name = expensesName.value;
+    value = expensesValue.value;
+  }
+
+  const id = Date.now();
+  const element = {
+    id: id,
+    name: name,
+    value: value,
+    type: type,
+  };
+
+  console.log(element);
+
+  if (type === "INCOME") {
+    incomes.push(element);
+    renderInc(element);
+  }
+  if (type === "EXPENSE") {
+    expenses.push(element);
+    renderExp(element);
+  }
+
+  incomeName.value = "";
+  incomeValue.value = "";
+  expensesName.value = "";
+  expensesValue.value = "";
+
+  incomeSum.innerHTML = `Suma przychodów:`;
+  expensesSum.innerHTML = `Suma wydatków:`;
 };
 
-const incId = Date.now();
-const inc = {
-  id: incId,
-  name: incomeName,
-  value: incomeValue,
-};
-incomes.push(inc);
-renderInc(inc);
-
-const expId = Date.now();
-
-const exp = {
-  id: expId,
-  name: expensesName,
-  value: expensesValue,
-};
-expenses.push(exp);
-renderExp(exp);
-
-incomeName.value = "";
-incomeValue.value = "";
-expensesName.value = "";
-expensesValue.value = "";
-
-incomeSum.innerHTML = `Suma przychodów: ${incomeSum.value}`;
-expensesSum.innerHTML = `Suma wydatków: ${expensesSum.value}`;
+incForm.addEventListener("submit", (e) => addElement(e, "INCOME"));
+expForm.addEventListener("submit", (e) => addElement(e, "EXPENSE"));
 
 /*let valueMain = incomeValue - expensesValue;
 

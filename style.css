@@ -52,6 +52,10 @@ body {
   margin-left: 25px;
 }
 
+.button {
+  margin-right: 15px;
+}
+
 #income-sum,
 #expenses-sum {
   display: flex;
@@ -76,4 +80,6 @@ body {
 
 .inc-title,
 .exp-title {
+  width: 30%;
+  margin-right: 0;
 }
