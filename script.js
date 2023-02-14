@@ -45,14 +45,6 @@ const renderInc = (inc) => {
 };
 
 const renderExp = (exp) => {
-  const Edit = document.createElement("button");
-  Edit.classList.add("button");
-  Edit.innerText = "Edytuj";
-
-  const Remove = document.createElement("button");
-  Remove.classList.add("button");
-  Remove.innerText = "Usuń";
-
   const newExp = document.createElement("div");
   newExp.id = "exp-${exp.id}";
   newExp.classList.add("expList");
@@ -61,8 +53,29 @@ const renderExp = (exp) => {
   expTitle.classList.add("exp-title");
   expTitle.innerHTML = `<span>${exp.name} - ${exp.value}</span>`;
   newExp.appendChild(expTitle);
+
+  const expEdit = (e, id) => {
+    const expenseIndex = expenses.findIndex((item) => item.id === id);
+    expenses[expenseIndex].name.value = "";
+    expForm.addEventListener("submit", (e) => addElement(e, "EXPENSE"));
+  };
+
+  const Edit = document.createElement("button");
+  Edit.classList.add("button");
+  Edit.innerText = "Edytuj";
   newExp.appendChild(Edit);
+  Edit.addEventListener("click", (e) => expEdit(e, exp.id));
+
+  const expRemove = (e, id) => {
+    const expenseIndex = expenses.findIndex((item) => item.id === id);
+    expenses[expenseIndex].name.value = "";
+  };
+
+  const Remove = document.createElement("button");
+  Remove.classList.add("button");
+  Remove.innerText = "Usuń";
   newExp.appendChild(Remove);
+  Remove.addEventListener("click", (e) => expRemove(e, exp.id));
 
   expensesList.appendChild(newExp);
 };
@@ -121,7 +134,7 @@ const addElement = (event, type) => {
   expensesName.value = "";
   expensesValue.value = "";
 
-  incomeSum.innerHTML = `Suma przychodów:`;
+  incomeSum.innerHTML = `Suma przychodów: `;
   expensesSum.innerHTML = `Suma wydatków:`;
 };
 
