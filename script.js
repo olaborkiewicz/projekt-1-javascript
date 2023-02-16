@@ -1,5 +1,7 @@
 let incomes = [];
+console.log(incomes);
 let expenses = [];
+console.log(expenses);
 
 /* @element: (obiekt do listy)
 id: String;
@@ -21,6 +23,8 @@ const expensesSum = document.querySelector("#expenses-sum");
 const incForm = document.querySelector("#inc-form");
 const expForm = document.querySelector("#exp-form");
 
+//////////////////////////////////////////////////////////////////
+
 const renderInc = (inc) => {
   const Edit = document.createElement("button");
   Edit.classList.add("button");
@@ -31,7 +35,7 @@ const renderInc = (inc) => {
   Remove.innerText = "Usuń";
 
   const newInc = document.createElement("div");
-  newInc.id = "inc-${inc.id}";
+  newInc.id = `inc-${inc.id}`;
   newInc.classList.add("incList");
 
   const incTitle = document.createElement("p");
@@ -42,59 +46,98 @@ const renderInc = (inc) => {
   newInc.appendChild(Remove);
 
   incomeList.appendChild(newInc);
+
+  Edit.addEventListener("click", function () {
+    newInc.remove();
+
+    const editedName = document.createElement("input");
+    editedName.classList.add("edit-name");
+    editedName.setAttribute("placeholder", "Nazwa przychodu");
+
+    const editedValue = document.createElement("input");
+    editedValue.classList.add("edit-value");
+    editedValue.setAttribute("placeholder", "Kwota");
+
+    let Save = document.createElement("button");
+    Save.classList.add("button");
+    Save.innerText = "Zapisz";
+
+    const editedInc = document.createElement("form");
+    editedInc.id = "edited-inc";
+    editedInc.appendChild(editedName);
+    editedInc.appendChild(editedValue);
+    editedInc.appendChild(Save);
+
+    incomeList.appendChild(editedInc);
+  });
+
+  Save.addEventListener("click", function () {
+    editedInc.remove();
+  });
+
+  Remove.addEventListener("click", function () {
+    newInc.remove();
+  });
 };
 
+/////////////////////////////////////////////////////////////////////////////////////
+
 const renderExp = (exp) => {
+  const Edit = document.createElement("button");
+  Edit.classList.add("button");
+  Edit.innerText = "Edytuj";
+
+  const Remove = document.createElement("button");
+  Remove.classList.add("button");
+  Remove.innerText = "Usuń";
+
   const newExp = document.createElement("div");
-  newExp.id = "exp-${exp.id}";
+  newExp.id = `exp-${exp.id}`;
   newExp.classList.add("expList");
 
   const expTitle = document.createElement("p");
   expTitle.classList.add("exp-title");
   expTitle.innerHTML = `<span>${exp.name} - ${exp.value}</span>`;
   newExp.appendChild(expTitle);
-
-  const expEdit = (e, id) => {
-    const expenseIndex = expenses.findIndex((item) => item.id === id);
-    expenses[expenseIndex].name.value = "";
-    expForm.addEventListener("submit", (e) => addElement(e, "EXPENSE"));
-  };
-
-  const Edit = document.createElement("button");
-  Edit.classList.add("button");
-  Edit.innerText = "Edytuj";
   newExp.appendChild(Edit);
-  Edit.addEventListener("click", (e) => expEdit(e, exp.id));
-
-  const expRemove = (e, id) => {
-    const expenseIndex = expenses.findIndex((item) => item.id === id);
-    expenses[expenseIndex].name.value = "";
-  };
-
-  const Remove = document.createElement("button");
-  Remove.classList.add("button");
-  Remove.innerText = "Usuń";
   newExp.appendChild(Remove);
-  Remove.addEventListener("click", (e) => expRemove(e, exp.id));
 
   expensesList.appendChild(newExp);
+
+  Edit.addEventListener("click", function () {
+    newExp.remove();
+
+    const editedName = document.createElement("input");
+    editedName.classList.add("edit-name");
+    editedName.setAttribute("placeholder", "Nazwa przychodu");
+
+    const editedValue = document.createElement("input");
+    editedValue.classList.add("edit-value");
+    editedValue.setAttribute("placeholder", "Kwota");
+
+    let Save = document.createElement("button");
+    Save.classList.add("button");
+    Save.innerText = "Zapisz";
+
+    const editedExp = document.createElement("form");
+    editedExp.id = "edited-exp";
+    editedExp.appendChild(editedName);
+    editedExp.appendChild(editedValue);
+    editedExp.appendChild(Save);
+
+    expensesList.appendChild(editedExp);
+  });
+
+  Save.addEventListener("click", function () {
+    editedExp.remove();
+  });
+
+  Remove.addEventListener("click", function () {
+    newExp.remove();
+  });
 };
 
-/*const renderEl = (element) => {
-  const newEl = document.createElement("div");
-  newEl.id = "el-${id}";
-  newEl.classList.add("list");
-
-  const elTitle = document.createElement("p");
-  elTitle.classList.add("el-title");
-  elTitle.innerHTML = `<span>${element.name} - ${element.value}</span>`;
-  newEl.appendChild(elTitle);
-
-  if (element.type === "INCOME") {
-    incomeList.appendChild(newEl);
-  } else element.type === "EXPENSE";
-  expensesList.appendChild(newEl);
-};*/
+/////////////////////////////////////////////////////////////////
 
 console.log("PAGE LOADED");
 
@@ -123,10 +166,12 @@ const addElement = (event, type) => {
   if (type === "INCOME") {
     incomes.push(element);
     renderInc(element);
+    console.log("income array: ", incomes);
   }
   if (type === "EXPENSE") {
     expenses.push(element);
     renderExp(element);
+    console.log("expenses array: ", expenses);
   }
 
   incomeName.value = "";
@@ -140,25 +185,3 @@ const addElement = (event, type) => {
 
 incForm.addEventListener("submit", (e) => addElement(e, "INCOME"));
 expForm.addEventListener("submit", (e) => addElement(e, "EXPENSE"));
-
-/*let valueMain = incomeValue - expensesValue;
-
-if (incomeSum > expensesSum) {
-  calculator.innerText = `Możesz jeszcze wydać ${valueMain} złotych`;
-} else if (incomeSum === expensesSum) {
-  calculator.innerText = "Bilans wynosi zero";
-} else incomeSum < expensesSum;
-{
-  calculator.innerText = `Bilans jest ujemny. Jesteś na minusie ${valueMain} złotych`;
-}
-
-const listInc = document.createElement("li");
-listInc.id = "income-element";
-listInc.classList.add("li-income");
-document.incomeList.appendChild(listInc);
-
-button.addEventListener("click", () => {
-  const nameInc = incomeName.value;
-  const amountInc = incomeValue.value;
-  listInc.innerText = `${nameInc} - ${amountInc}`;
-});*/

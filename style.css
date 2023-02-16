@@ -44,7 +44,7 @@ body {
   color: #000;
   font-family: "Playfair Display", serif;
   margin-left: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-weight: 500;
 }
 
@@ -69,17 +69,24 @@ body {
 }
 
 #income-list,
-#expenses-list {
-  display: flex;
-  flex-direction: column;
+#expenses-list,
+#edited-inc,
+#edited-exp {
+  margin-bottom: 20px;
 }
 
 .incList,
 .expList {
+  margin-bottom: 20px;
 }
 
 .inc-title,
 .exp-title {
   width: 30%;
   margin-right: 0;
+}
+
+.edit-name,
+.edit-value {
+  margin-right: 15px;
 }
