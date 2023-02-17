@@ -26,29 +26,14 @@ const expForm = document.querySelector("#exp-form");
 //////////////////////////////////////////////////////////////////
 
 const renderInc = (inc) => {
-  const Edit = document.createElement("button");
-  Edit.classList.add("button");
-  Edit.innerText = "Edytuj";
-
-  const Remove = document.createElement("button");
-  Remove.classList.add("button");
-  Remove.innerText = "Usuń";
-
   const newInc = document.createElement("div");
   newInc.id = `inc-${inc.id}`;
   newInc.classList.add("incList");
 
-  const incTitle = document.createElement("p");
-  incTitle.classList.add("inc-title");
-  incTitle.innerHTML = `<span>${inc.name} - ${inc.value}</span>`;
-  newInc.appendChild(incTitle);
-  newInc.appendChild(Edit);
-  newInc.appendChild(Remove);
-
-  incomeList.appendChild(newInc);
-
-  Edit.addEventListener("click", function () {
-    newInc.remove();
+  const displayAsForm = (inc, parent) => {
+    while (parent.firstChild) {
+      parent.removeChild(parent.lastChild);
+    }
 
     const editedName = document.createElement("input");
     editedName.classList.add("edit-name");
@@ -61,23 +46,40 @@ const renderInc = (inc) => {
     let Save = document.createElement("button");
     Save.classList.add("button");
     Save.innerText = "Zapisz";
+    Save.addEventListener("click", () => displayAsRow(inc, parent));
 
-    const editedInc = document.createElement("form");
-    editedInc.id = "edited-inc";
-    editedInc.appendChild(editedName);
-    editedInc.appendChild(editedValue);
-    editedInc.appendChild(Save);
+    parent.appendChild(editedName);
+    parent.appendChild(editedValue);
+    parent.appendChild(Save);
+  };
 
-    incomeList.appendChild(editedInc);
-  });
+  const displayAsRow = (inc, parent) => {
+    while (parent.firstChild) {
+      parent.removeChild(parent.lastChild);
+    }
 
-  Save.addEventListener("click", function () {
-    editedInc.remove();
-  });
+    const Edit = document.createElement("button");
+    Edit.classList.add("button");
+    Edit.innerText = "Edytuj";
+    Edit.addEventListener("click", () => displayAsForm(inc, parent));
 
-  Remove.addEventListener("click", function () {
-    newInc.remove();
-  });
+    const Remove = document.createElement("button");
+    Remove.classList.add("button");
+    Remove.innerText = "Usuń";
+    Remove.addEventListener("click", function () {
+      parent.remove();
+    });
+
+    const incTitle = document.createElement("p");
+    incTitle.classList.add("inc-title");
+    incTitle.innerHTML = `<span>${inc.name} - ${inc.value}</span>`;
+    parent.appendChild(incTitle);
+    parent.appendChild(Edit);
+    parent.appendChild(Remove);
+  };
+
+  displayAsRow(inc, newInc);
+  incomeList.appendChild(newInc);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////
