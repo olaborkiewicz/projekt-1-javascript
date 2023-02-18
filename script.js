@@ -38,15 +38,22 @@ const renderInc = (inc) => {
     const editedName = document.createElement("input");
     editedName.classList.add("edit-name");
     editedName.setAttribute("placeholder", "Nazwa przychodu");
+    editedName.value = inc.name;
 
     const editedValue = document.createElement("input");
     editedValue.classList.add("edit-value");
     editedValue.setAttribute("placeholder", "Kwota");
+    editedValue.value = inc.value;
 
     let Save = document.createElement("button");
     Save.classList.add("button");
     Save.innerText = "Zapisz";
-    Save.addEventListener("click", () => displayAsRow(inc, parent));
+    Save.addEventListener("click", () => {
+      inc.name = editedName.value;
+      inc.value = editedValue.value;
+      updateIncSummary(incomeSum, "Suma przychodów: ");
+      displayAsRow(inc, parent);
+    });
 
     parent.appendChild(editedName);
     parent.appendChild(editedValue);
@@ -58,10 +65,13 @@ const renderInc = (inc) => {
       parent.removeChild(parent.lastChild);
     }
 
+    const ButtonIncPanel = document.createElement("div");
+
     const Edit = document.createElement("button");
     Edit.classList.add("button");
     Edit.innerText = "Edytuj";
     Edit.addEventListener("click", () => displayAsForm(inc, parent));
+    ButtonIncPanel.appendChild(Edit);
 
     const Remove = document.createElement("button");
     Remove.classList.add("button");
@@ -69,13 +79,13 @@ const renderInc = (inc) => {
     Remove.addEventListener("click", function () {
       parent.remove();
     });
+    ButtonIncPanel.appendChild(Remove);
 
     const incTitle = document.createElement("p");
     incTitle.classList.add("inc-title");
     incTitle.innerHTML = `<span>${inc.name} - ${inc.value}</span>`;
     parent.appendChild(incTitle);
-    parent.appendChild(Edit);
-    parent.appendChild(Remove);
+    parent.appendChild(ButtonIncPanel);
   };
 
   displayAsRow(inc, newInc);
@@ -85,58 +95,72 @@ const renderInc = (inc) => {
 /////////////////////////////////////////////////////////////////////////////////////
 
 const renderExp = (exp) => {
-  const Edit = document.createElement("button");
-  Edit.classList.add("button");
-  Edit.innerText = "Edytuj";
-
-  const Remove = document.createElement("button");
-  Remove.classList.add("button");
-  Remove.innerText = "Usuń";
-
   const newExp = document.createElement("div");
   newExp.id = `exp-${exp.id}`;
   newExp.classList.add("expList");
 
-  const expTitle = document.createElement("p");
-  expTitle.classList.add("exp-title");
-  expTitle.innerHTML = `<span>${exp.name} - ${exp.value}</span>`;
-  newExp.appendChild(expTitle);
-  newExp.appendChild(Edit);
-  newExp.appendChild(Remove);
-
-  expensesList.appendChild(newExp);
-
-  Edit.addEventListener("click", function () {
-    newExp.remove();
+  const displayAsForm = (exp, parent) => {
+    while (parent.firstChild) {
+      parent.removeChild(parent.lastChild);
+    }
 
     const editedName = document.createElement("input");
     editedName.classList.add("edit-name");
-    editedName.setAttribute("placeholder", "Nazwa przychodu");
+    editedName.setAttribute("placeholder", "Nazwa wydatku");
+    editedName.value = exp.name;
 
     const editedValue = document.createElement("input");
     editedValue.classList.add("edit-value");
     editedValue.setAttribute("placeholder", "Kwota");
+    editedValue.value = exp.value;
 
     let Save = document.createElement("button");
     Save.classList.add("button");
     Save.innerText = "Zapisz";
+    Save.addEventListener("click", () => {
+      exp.name = editedName.value;
+      exp.value = editedValue.value;
+      updateExpSummary(expensesSum, "Suma wydatków: ");
+      displayAsRow(exp, parent);
+    });
 
-    const editedExp = document.createElement("form");
-    editedExp.id = "edited-exp";
-    editedExp.appendChild(editedName);
-    editedExp.appendChild(editedValue);
-    editedExp.appendChild(Save);
+    parent.appendChild(editedName);
+    parent.appendChild(editedValue);
+    parent.appendChild(Save);
+  };
 
-    expensesList.appendChild(editedExp);
-  });
+  const displayAsRow = (exp, parent) => {
+    while (parent.firstChild) {
+      parent.removeChild(parent.lastChild);
+    }
 
-  Save.addEventListener("click", function () {
-    editedExp.remove();
-  });
+    const ButtonExpPanel = document.createElement("div");
 
-  Remove.addEventListener("click", function () {
-    newExp.remove();
-  });
+    const Edit = document.createElement("button");
+    Edit.classList.add("button");
+    Edit.innerText = "Edytuj";
+    Edit.addEventListener("click", () => displayAsForm(exp, parent));
+    ButtonExpPanel.appendChild(Edit);
+
+    const Remove = document.createElement("button");
+    Remove.classList.add("button");
+    Remove.innerText = "Usuń";
+    Remove.addEventListener("click", function () {
+      parent.remove();
+      updateExpSummary(expensesSum, "Suma wydatków: ");
+    });
+
+    ButtonExpPanel.appendChild(Remove);
+
+    const expTitle = document.createElement("p");
+    expTitle.classList.add("exp-title");
+    expTitle.innerHTML = `<span>${exp.name} - ${exp.value}</span>`;
+    newExp.appendChild(expTitle);
+    newExp.appendChild(ButtonExpPanel);
+  };
+
+  displayAsRow(exp, newExp);
+  expensesList.appendChild(newExp);
 };
 
 /////////////////////////////////////////////////////////////////
@@ -181,8 +205,26 @@ const addElement = (event, type) => {
   expensesName.value = "";
   expensesValue.value = "";
 
-  incomeSum.innerHTML = `Suma przychodów: `;
-  expensesSum.innerHTML = `Suma wydatków:`;
+  //////////////////////////////////////////////////////////////////////
+
+  updateIncSummary(incomeSum, "Suma przychodów: ");
+  updateExpSummary(expensesSum, "Suma wydatków: ");
+};
+
+const updateIncSummary = (summaryForm, label) => {
+  summaryForm.innerHTML =
+    label +
+    incomes
+      .map((value) => Number(value.value))
+      .reduce((acc, value) => acc + value, 0);
+};
+
+const updateExpSummary = (summaryForm, label) => {
+  summaryForm.innerHTML =
+    label +
+    expenses
+      .map((value) => Number(value.value))
+      .reduce((acc, value) => acc + value, 0);
 };
 
 incForm.addEventListener("submit", (e) => addElement(e, "INCOME"));
