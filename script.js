@@ -229,3 +229,13 @@ const updateExpSummary = (summaryForm, label) => {
 
 incForm.addEventListener("submit", (e) => addElement(e, "INCOME"));
 expForm.addEventListener("submit", (e) => addElement(e, "EXPENSE"));
+
+/*const calculatorValue = () => {
+  if (incomeSum.value > expensesSum.value) {
+calculator.innerText = `Możesz jeszcze wydać ${incomeSum.value - expensesSum.value} złotych`;
+} else if (incomeSum.value - expensesSum.value === 0) {
+calculator.innerText = "Bilans wynosi zero”;
+} else 
+calculator.innerText = `Bilans jest ujemny. Jesteś na minusie ${expensesSum.value - incomeSum.value} złotych`;
+}
+*/
