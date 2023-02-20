@@ -102,3 +102,9 @@ body {
 .edit-value {
   margin-right: 15px;
 }
+
+.calculator-content {
+  margin: 0 auto;
+  font-weight: 700;
+  font-size: large;
+}

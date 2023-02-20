@@ -51,8 +51,14 @@ const renderInc = (inc) => {
     Save.addEventListener("click", () => {
       inc.name = editedName.value;
       inc.value = editedValue.value;
-      updateIncSummary(incomeSum, "Suma przychodów: ");
-      displayAsRow(inc, parent);
+
+      if (Number(editedValue.value) > 0) {
+        updateSummary(incomes, incomeSum, "Suma przychodów: ");
+        displayAsRow(inc, parent);
+        calculatorValue();
+      } else {
+        alert("Wpisano złą wartość pola 'Kwota'");
+      }
     });
 
     parent.appendChild(editedName);
@@ -78,6 +84,9 @@ const renderInc = (inc) => {
     Remove.innerText = "Usuń";
     Remove.addEventListener("click", function () {
       parent.remove();
+      incomes = incomes.filter((item) => item.id !== inc.id);
+      updateSummary(incomes, incomeSum, "Suma przychodów: ");
+      calculatorValue();
     });
     ButtonIncPanel.appendChild(Remove);
 
@@ -120,8 +129,14 @@ const renderExp = (exp) => {
     Save.addEventListener("click", () => {
       exp.name = editedName.value;
       exp.value = editedValue.value;
-      updateExpSummary(expensesSum, "Suma wydatków: ");
-      displayAsRow(exp, parent);
+
+      if (Number(editedValue.value) > 0) {
+        updateSummary(expenses, expensesSum, "Suma wydatków: ");
+        displayAsRow(exp, parent);
+        calculatorValue();
+      } else {
+        alert("Wpisano złą wartość pola 'Kwota'");
+      }
     });
 
     parent.appendChild(editedName);
@@ -147,7 +162,9 @@ const renderExp = (exp) => {
     Remove.innerText = "Usuń";
     Remove.addEventListener("click", function () {
       parent.remove();
-      updateExpSummary(expensesSum, "Suma wydatków: ");
+      expenses = expenses.filter((item) => item.id !== exp.id);
+      updateSummary(expenses, expensesSum, "Suma wydatków: ");
+      calculatorValue();
     });
 
     ButtonExpPanel.appendChild(Remove);
@@ -155,14 +172,13 @@ const renderExp = (exp) => {
     const expTitle = document.createElement("p");
     expTitle.classList.add("exp-title");
     expTitle.innerHTML = `<span>${exp.name} - ${exp.value}</span>`;
-    newExp.appendChild(expTitle);
-    newExp.appendChild(ButtonExpPanel);
+    parent.appendChild(expTitle);
+    parent.appendChild(ButtonExpPanel);
   };
 
   displayAsRow(exp, newExp);
   expensesList.appendChild(newExp);
 };
-
 /////////////////////////////////////////////////////////////////
 
 console.log("PAGE LOADED");
@@ -177,6 +193,11 @@ const addElement = (event, type) => {
   if (type === "EXPENSE") {
     name = expensesName.value;
     value = expensesValue.value;
+  }
+
+  if (value < 0) {
+    alert("Wpisano ujemną wartość w polu 'Kwota'!");
+    Save.setAttribute("disabled");
   }
 
   const id = Date.now();
@@ -205,37 +226,29 @@ const addElement = (event, type) => {
   expensesName.value = "";
   expensesValue.value = "";
 
-  //////////////////////////////////////////////////////////////////////
-
-  updateIncSummary(incomeSum, "Suma przychodów: ");
-  updateExpSummary(expensesSum, "Suma wydatków: ");
+  updateSummary(incomes, incomeSum, "Suma przychodów: ");
+  updateSummary(expenses, expensesSum, "Suma wydatków: ");
+  calculatorValue();
 };
 
-const updateIncSummary = (summaryForm, label) => {
+const updateSummary = (array, summaryForm, label) => {
   summaryForm.innerHTML =
-    label +
-    incomes
-      .map((value) => Number(value.value))
-      .reduce((acc, value) => acc + value, 0);
-};
-
-const updateExpSummary = (summaryForm, label) => {
-  summaryForm.innerHTML =
-    label +
-    expenses
-      .map((value) => Number(value.value))
-      .reduce((acc, value) => acc + value, 0);
+    label + array.reduce((acc, value) => acc + Number(value.value), 0);
 };
 
 incForm.addEventListener("submit", (e) => addElement(e, "INCOME"));
 expForm.addEventListener("submit", (e) => addElement(e, "EXPENSE"));
 
-/*const calculatorValue = () => {
-  if (incomeSum.value > expensesSum.value) {
-calculator.innerText = `Możesz jeszcze wydać ${incomeSum.value - expensesSum.value} złotych`;
-} else if (incomeSum.value - expensesSum.value === 0) {
-calculator.innerText = "Bilans wynosi zero”;
-} else 
-calculator.innerText = `Bilans jest ujemny. Jesteś na minusie ${expensesSum.value - incomeSum.value} złotych`;
-}
-*/
+const calculatorValue = () => {
+  const incSum = incomes.reduce((acc, value) => acc + Number(value.value), 0);
+  const expSum = expenses.reduce((acc, value) => acc + Number(value.value), 0);
+  const sumSum = incSum - expSum;
+
+  if (sumSum > 0) {
+    calculator.innerHTML = `<span class="calculator-content">Możesz jeszcze wydać ${sumSum} zł</span>`;
+  } else if (sumSum === 0) {
+    calculator.innerHTML = `<span class="calculator-content">Bilans wynosi zero</span>`;
+  } else {
+    calculator.innerHTML = `<span class="calculator-content">Bilans jest ujemny. Jesteś na minusie ${sumSum} zł</span>`;
+  }
+};
