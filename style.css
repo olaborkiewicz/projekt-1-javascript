@@ -2,191 +2,164 @@ body {
   font-family: "Playfair Display", serif;
 }
 
-@media only screen and (max-width: 767px) {
-  .logo {
-    display: flex;
-    width: 100px;
-    height: 100px;
-    margin: 50px auto;
-  }
+.logo {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  margin: 50px auto;
+}
 
-  #calculator {
-    display: flex;
-    width: 95vw;
-    height: 50px;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    border: 3px solid #000;
-    border-radius: 30px;
-    align-items: center;
-    background-image: linear-gradient(256deg, #673ab74f, transparent);
-  }
-  .calculator-content {
-    font-size: 12px;
-    font-weight: 700;
-    margin: 0 auto;
-  }
+#calculator {
+  display: flex;
+  width: 95vw;
+  height: 50px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  border: 3px solid #000;
+  border-radius: 30px;
+  align-items: center;
+  background-image: linear-gradient(256deg, #673ab74f, transparent);
+}
 
-  .table-container {
-    display: flex;
-    width: 95vw;
-    height: fit-content;
-    border: 2px solid #000;
-    margin: 0 auto;
-    background-image: linear-gradient(0deg, #2a67bb26, transparent);
-  }
+.calculator-content {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 auto;
+}
 
-  .sum-container {
-    display: flex;
-    width: 95vw;
-    height: 50px;
-    margin: 0 auto;
-  }
+.table-container {
+  display: flex;
+  width: 95vw;
+  height: fit-content;
+  border: 2px solid #000;
+  margin: 0 auto;
+  background-image: linear-gradient(0deg, #2a67bb26, transparent);
+}
 
-  .left,
-  .right,
-  .left-sum,
-  .right-sum {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 100%;
-  }
+.sum-container {
+  display: flex;
+  width: 95vw;
+  height: 50px;
+  margin: 0 auto;
+}
 
-  .left {
-    border-right: 2px solid #000;
-    border-bottom: none;
-  }
+.left,
+.right,
+.left-sum,
+.right-sum {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+}
 
-  .left-sum,
-  .right-sum {
-    border: 2px solid #000;
-    border-top: none;
-    background-image: linear-gradient(0deg, #2a67bb26, transparent);
-  }
+.left {
+  border-right: 2px solid #000;
+  border-bottom: none;
+}
 
-  .right-sum {
-    border-left: none;
-  }
+.right {
+  border-left: 2px solid #000;
+}
 
-  #income-header,
-  #expenses-header {
-    width: 100%;
-    font-size: 20px;
-    color: #000;
-    font-family: "Playfair Display", serif;
-    margin-left: 10px;
-    margin-bottom: 40px;
-    font-weight: 500;
-  }
+.left-sum,
+.right-sum {
+  border: 2px solid #000;
+  border-top: none;
+  background-image: linear-gradient(0deg, #2a67bb26, transparent);
+}
 
-  #inc-form,
-  #exp-form {
-    display: flex;
-    flex-direction: column;
-    padding-right: 20px;
-  }
+.right-sum {
+  border-left: none;
+}
 
-  #income-name,
-  #expenses-name {
-    margin-bottom: 8px;
-  }
+#income-header,
+#expenses-header {
+  width: 100%;
+  font-size: 20px;
+  color: #000;
+  margin-left: 10px;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
 
-  #income-value,
-  #expenses-value {
-    margin-bottom: 15px;
-  }
+#inc-form,
+#exp-form {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+}
 
-  #button-add {
-    width: 100px;
-    margin-left: 25px;
-    margin: 0 auto;
-  }
+#income-name,
+#expenses-name {
+  margin-bottom: 8px;
+}
 
-  .button-save {
-    margin: 0 auto;
-  }
+#income-value,
+#expenses-value {
+  margin-bottom: 15px;
+}
 
-  .button {
-    width: 50px;
-    margin: 0 auto;
-    margin-right: 10px;
-  }
+#button-add {
+  width: 100px;
+  margin-left: 25px;
+  margin: 0 auto;
+}
 
-  #button-add,
-  .button,
-  .button-save {
-    height: 25px;
-    border-radius: 15px;
-    border-color: azure;
-  }
+.button-save {
+  margin: 0 auto;
+}
 
-  #income-sum,
-  #expenses-sum {
-    display: flex;
-    font-size: 12px;
-    font-weight: 700;
-    margin: auto auto 15px 15px;
-  }
+.button {
+  width: 50px;
+  margin: 0 auto;
+  margin-right: 10px;
+}
 
-  .form {
-    display: flex;
-  }
+#button-add,
+.button,
+.button-save {
+  height: 25px;
+  border-radius: 15px;
+  border-color: azure;
+}
 
-  #income-list,
-  #expenses-list,
-  #edited-inc,
-  #edited-exp {
-    margin-bottom: 20px;
-    padding: 0;
-  }
+#income-sum,
+#expenses-sum {
+  display: flex;
+  font-size: 12px;
+  font-weight: 700;
+  margin: auto auto 15px 15px;
+}
 
-  .incList,
-  .expList {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0 10px;
-  }
+.form {
+  display: flex;
+}
 
-  .inc-title,
-  .exp-title {
-    margin-right: 0;
-  }
+#income-list,
+#expenses-list,
+#edited-inc,
+#edited-exp {
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.incList,
+.expList {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0 10px;
+}
+
+.inc-title,
+.exp-title {
+  margin-right: 0;
 }
 
 @media only screen and (min-width: 768px) {
-  .logo {
-    display: flex;
-    width: 100px;
-    height: 100px;
-    margin: 50px auto;
-  }
-
-  #calculator {
-    display: flex;
-    width: 95vw;
-    height: 50px;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    border: 3px solid #000;
-    border-radius: 30px;
-    align-items: center;
-    background-image: linear-gradient(256deg, #673ab74f, transparent);
-  }
   .calculator-content {
     font-size: 20px;
-    font-weight: 700;
-    margin: 0 auto;
-  }
-
-  .table-container {
-    display: flex;
-    width: 95vw;
-    height: fit-content;
-    border: 2px solid #000;
-    margin: 0 auto;
-    background-image: linear-gradient(0deg, #2a67bb26, transparent);
   }
 
   .sum-container {
@@ -196,198 +169,39 @@ body {
     margin: 0 auto;
   }
 
-  .left,
-  .right,
-  .left-sum,
-  .right-sum {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 100%;
-  }
-
-  .left {
-    border-right: 2px solid #000;
-    border-bottom: none;
-  }
-
-  .left-sum,
-  .right-sum {
-    border: 2px solid #000;
-    border-top: none;
-    background-image: linear-gradient(0deg, #2a67bb26, transparent);
-  }
-
-  .right-sum {
-    border-left: none;
-  }
-
-  #income-header,
-  #expenses-header {
-    width: 100%;
-    font-size: 20px;
-    color: #000;
-    font-family: "Playfair Display", serif;
-    margin-left: 10px;
-    margin-bottom: 40px;
-    font-weight: 500;
-  }
-
-  #inc-form,
-  #exp-form {
-    display: flex;
-    flex-direction: column;
-    padding-right: 20px;
-  }
-
-  #income-name,
-  #expenses-name {
-    margin-bottom: 8px;
-  }
-
-  #income-value,
-  #expenses-value {
-    margin-bottom: 15px;
-  }
-
-  #button-add {
-    width: 100px;
-    margin-left: 25px;
-    margin: 0 auto;
-  }
-
   .button-save {
-    margin: 0 auto;
     width: 100px;
   }
 
   .button {
     width: 130px;
-    margin: 0 auto;
     margin-right: 40px;
-  }
-
-  #button-add,
-  .button,
-  .button-save {
-    height: 25px;
-    border-radius: 15px;
-    border-color: azure;
   }
 
   #income-sum,
   #expenses-sum {
-    display: flex;
     font-size: 20px;
-    font-weight: 700;
-    margin: auto auto 15px 15px;
-  }
-
-  .form {
-    display: flex;
-  }
-
-  #income-list,
-  #expenses-list,
-  #edited-inc,
-  #edited-exp {
-    margin-bottom: 20px;
-    padding: 0;
-  }
-
-  .incList,
-  .expList {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0 10px;
-  }
-
-  .inc-title,
-  .exp-title {
-    margin-right: 0;
   }
 }
 
 @media only screen and (min-width: 1024px) {
-  .logo {
-    display: flex;
-    width: 100px;
-    height: 100px;
-    margin: 50px auto;
-  }
-
   #calculator {
     display: flex;
     width: 700px;
-    height: 50px;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    border: 3px solid #000;
-    border-radius: 30px;
-    align-items: center;
-    background-image: linear-gradient(256deg, #673ab74f, transparent);
   }
+
   .calculator-content {
     font-size: 20px;
-    font-weight: 700;
-    margin: 0 auto;
   }
 
   .table-container {
     display: flex;
     width: 1000px;
-    height: fit-content;
-    border: 2px solid #000;
-    margin: 0 auto;
-    background-image: linear-gradient(0deg, #2a67bb26, transparent);
   }
 
   .sum-container {
     display: flex;
     width: 1000px;
-    height: 50px;
-    margin: 0 auto;
-  }
-
-  .left,
-  .right,
-  .left-sum,
-  .right-sum {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 100%;
-  }
-
-  .left {
-    border-right: 2px solid #000;
-    border-bottom: none;
-  }
-
-  .right {
-    border-left: 2px solid #000;
-  }
-
-  .left-sum,
-  .right-sum {
-    border: 2px solid #000;
-    border-top: none;
-    background-image: linear-gradient(0deg, #2a67bb26, transparent);
-  }
-
-  .right-sum {
-    border-left: none;
-  }
-
-  #income-header,
-  #expenses-header {
-    width: 100%;
-    font-size: 20px;
-    color: #000;
-    margin-left: 10px;
-    margin-bottom: 40px;
-    font-weight: 500;
   }
 
   #inc-form,
@@ -395,24 +209,7 @@ body {
     display: block;
   }
 
-  #income-name,
-  #expenses-name {
-    margin-bottom: 8px;
-  }
-
-  #income-value,
-  #expenses-value {
-    margin-bottom: 15px;
-  }
-
-  #button-add {
-    width: 100px;
-    margin-left: 25px;
-    margin: 0 auto;
-  }
-
   .button-save {
-    margin: 0 auto;
     width: 100px;
   }
 
@@ -422,38 +219,20 @@ body {
 
   .button {
     width: 100px;
-    margin: 0 auto;
-    margin-right: 10px;
   }
+
   .button-save {
     margin-left: 15px;
-  }
-  #button-add,
-  .button,
-  .button-save {
-    height: 25px;
-    border-radius: 15px;
-    border-color: azure;
   }
 
   #income-sum,
   #expenses-sum {
     display: flex;
     font-size: 20px;
-    font-weight: 700;
-    margin: auto auto 15px 15px;
   }
 
   .form {
     display: block;
-  }
-
-  #income-list,
-  #expenses-list,
-  #edited-inc,
-  #edited-exp {
-    margin-bottom: 20px;
-    padding: 0;
   }
 
   .incList,
@@ -462,12 +241,6 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0;
     margin: 0 10px 20px 10px;
-  }
-
-  .inc-title,
-  .exp-title {
-    margin-right: 0;
   }
 }
