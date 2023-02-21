@@ -46,7 +46,7 @@ const renderInc = (inc) => {
     editedValue.value = inc.value;
 
     let Save = document.createElement("button");
-    Save.classList.add("button");
+    Save.classList.add("button-save");
     Save.innerText = "Zapisz";
     Save.addEventListener("click", () => {
       inc.name = editedName.value;
@@ -101,8 +101,6 @@ const renderInc = (inc) => {
   incomeList.appendChild(newInc);
 };
 
-/////////////////////////////////////////////////////////////////////////////////////
-
 const renderExp = (exp) => {
   const newExp = document.createElement("div");
   newExp.id = `exp-${exp.id}`;
@@ -124,7 +122,7 @@ const renderExp = (exp) => {
     editedValue.value = exp.value;
 
     let Save = document.createElement("button");
-    Save.classList.add("button");
+    Save.classList.add("button-save");
     Save.innerText = "Zapisz";
     Save.addEventListener("click", () => {
       exp.name = editedName.value;
@@ -179,7 +177,6 @@ const renderExp = (exp) => {
   displayAsRow(exp, newExp);
   expensesList.appendChild(newExp);
 };
-/////////////////////////////////////////////////////////////////
 
 console.log("PAGE LOADED");
 
