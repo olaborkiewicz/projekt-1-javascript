@@ -23,8 +23,6 @@ const expensesSum = document.querySelector("#expenses-sum");
 const incForm = document.querySelector("#inc-form");
 const expForm = document.querySelector("#exp-form");
 
-//////////////////////////////////////////////////////////////////
-
 const renderInc = (inc) => {
   const newInc = document.createElement("div");
   newInc.id = `inc-${inc.id}`;
@@ -34,7 +32,6 @@ const renderInc = (inc) => {
     while (parent.firstChild) {
       parent.removeChild(parent.lastChild);
     }
-
     const editedName = document.createElement("input");
     editedName.classList.add("edit-name");
     editedName.setAttribute("placeholder", "Nazwa przychodu");
