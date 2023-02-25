@@ -1,13 +1,5 @@
 let incomes = [];
-console.log(incomes);
 let expenses = [];
-console.log(expenses);
-
-/* @element: (obiekt do listy)
-id: String;
-name: String;
-value: Number;
-*/
 
 const calculator = document.querySelector("#calculator");
 const incomeHeader = document.querySelector("#income-header");
@@ -34,7 +26,7 @@ const renderInc = (inc) => {
     }
     const editedName = document.createElement("input");
     editedName.classList.add("edit-name");
-    editedName.setAttribute("placeholder", "Nazwa przychodu");
+    editedName.setAttribute("placeholder", "Nazwa");
     editedName.value = inc.name;
 
     const editedValue = document.createElement("input");
@@ -42,12 +34,17 @@ const renderInc = (inc) => {
     editedValue.setAttribute("placeholder", "Kwota");
     editedValue.value = inc.value;
 
-    let Save = document.createElement("button");
-    Save.classList.add("button-save");
-    Save.innerText = "Zapisz";
-    Save.addEventListener("click", () => {
+    const save = document.createElement("button");
+    save.classList.add("button-save");
+    save.innerText = "Zapisz";
+    save.addEventListener("click", () => {
       inc.name = editedName.value;
       inc.value = editedValue.value;
+
+      if (inc.name === "") {
+        alert("Uzupełnij pole 'Nazwa'!");
+        save.setAttribute("disabled");
+      }
 
       if (Number(editedValue.value) > 0) {
         updateSummary(incomes, incomeSum, "Suma przychodów: ");
@@ -55,12 +52,13 @@ const renderInc = (inc) => {
         calculatorValue();
       } else {
         alert("Wpisano złą wartość pola 'Kwota'");
+        save.setAttribute("disabled");
       }
     });
 
     parent.appendChild(editedName);
     parent.appendChild(editedValue);
-    parent.appendChild(Save);
+    parent.appendChild(save);
   };
 
   const displayAsRow = (inc, parent) => {
@@ -68,30 +66,30 @@ const renderInc = (inc) => {
       parent.removeChild(parent.lastChild);
     }
 
-    const ButtonIncPanel = document.createElement("div");
+    const buttonIncPanel = document.createElement("div");
 
-    const Edit = document.createElement("button");
-    Edit.classList.add("button");
-    Edit.innerText = "Edytuj";
-    Edit.addEventListener("click", () => displayAsForm(inc, parent));
-    ButtonIncPanel.appendChild(Edit);
+    const edit = document.createElement("button");
+    edit.classList.add("button");
+    edit.innerText = "Edytuj";
+    edit.addEventListener("click", () => displayAsForm(inc, parent));
+    buttonIncPanel.appendChild(edit);
 
-    const Remove = document.createElement("button");
-    Remove.classList.add("button");
-    Remove.innerText = "Usuń";
-    Remove.addEventListener("click", function () {
+    const remove = document.createElement("button");
+    remove.classList.add("button");
+    remove.innerText = "Usuń";
+    remove.addEventListener("click", function () {
       parent.remove();
       incomes = incomes.filter((item) => item.id !== inc.id);
       updateSummary(incomes, incomeSum, "Suma przychodów: ");
       calculatorValue();
     });
-    ButtonIncPanel.appendChild(Remove);
+    buttonIncPanel.appendChild(remove);
 
     const incTitle = document.createElement("p");
     incTitle.classList.add("inc-title");
     incTitle.innerHTML = `<span>${inc.name} - ${inc.value}</span>`;
     parent.appendChild(incTitle);
-    parent.appendChild(ButtonIncPanel);
+    parent.appendChild(buttonIncPanel);
   };
 
   displayAsRow(inc, newInc);
@@ -110,7 +108,7 @@ const renderExp = (exp) => {
 
     const editedName = document.createElement("input");
     editedName.classList.add("edit-name");
-    editedName.setAttribute("placeholder", "Nazwa wydatku");
+    editedName.setAttribute("placeholder", "Nazwa");
     editedName.value = exp.name;
 
     const editedValue = document.createElement("input");
@@ -118,12 +116,17 @@ const renderExp = (exp) => {
     editedValue.setAttribute("placeholder", "Kwota");
     editedValue.value = exp.value;
 
-    let Save = document.createElement("button");
-    Save.classList.add("button-save");
-    Save.innerText = "Zapisz";
-    Save.addEventListener("click", () => {
+    const save = document.createElement("button");
+    save.classList.add("button-save");
+    save.innerText = "Zapisz";
+    save.addEventListener("click", () => {
       exp.name = editedName.value;
       exp.value = editedValue.value;
+
+      if (exp.name === "") {
+        alert("Uzupełnij pole 'Nazwa'!");
+        save.setAttribute("disabled");
+      }
 
       if (Number(editedValue.value) > 0) {
         updateSummary(expenses, expensesSum, "Suma wydatków: ");
@@ -131,12 +134,13 @@ const renderExp = (exp) => {
         calculatorValue();
       } else {
         alert("Wpisano złą wartość pola 'Kwota'");
+        save.setAttribute("disabled");
       }
     });
 
     parent.appendChild(editedName);
     parent.appendChild(editedValue);
-    parent.appendChild(Save);
+    parent.appendChild(save);
   };
 
   const displayAsRow = (exp, parent) => {
@@ -144,38 +148,36 @@ const renderExp = (exp) => {
       parent.removeChild(parent.lastChild);
     }
 
-    const ButtonExpPanel = document.createElement("div");
+    const buttonExpPanel = document.createElement("div");
 
-    const Edit = document.createElement("button");
-    Edit.classList.add("button");
-    Edit.innerText = "Edytuj";
-    Edit.addEventListener("click", () => displayAsForm(exp, parent));
-    ButtonExpPanel.appendChild(Edit);
+    const edit = document.createElement("button");
+    edit.classList.add("button");
+    edit.innerText = "Edytuj";
+    edit.addEventListener("click", () => displayAsForm(exp, parent));
+    buttonExpPanel.appendChild(edit);
 
-    const Remove = document.createElement("button");
-    Remove.classList.add("button");
-    Remove.innerText = "Usuń";
-    Remove.addEventListener("click", function () {
+    const remove = document.createElement("button");
+    remove.classList.add("button");
+    remove.innerText = "Usuń";
+    remove.addEventListener("click", function () {
       parent.remove();
       expenses = expenses.filter((item) => item.id !== exp.id);
       updateSummary(expenses, expensesSum, "Suma wydatków: ");
       calculatorValue();
     });
 
-    ButtonExpPanel.appendChild(Remove);
+    buttonExpPanel.appendChild(remove);
 
     const expTitle = document.createElement("p");
     expTitle.classList.add("exp-title");
     expTitle.innerHTML = `<span>${exp.name} - ${exp.value}</span>`;
     parent.appendChild(expTitle);
-    parent.appendChild(ButtonExpPanel);
+    parent.appendChild(buttonExpPanel);
   };
 
   displayAsRow(exp, newExp);
   expensesList.appendChild(newExp);
 };
-
-console.log("PAGE LOADED");
 
 const addElement = (event, type) => {
   event.preventDefault();
@@ -189,9 +191,14 @@ const addElement = (event, type) => {
     value = expensesValue.value;
   }
 
-  if (value < 0) {
-    alert("Wpisano ujemną wartość w polu 'Kwota'!");
-    Save.setAttribute("disabled");
+  if (name === "") {
+    alert("Uzupełnij pole 'Nazwa'!");
+    save.setAttribute("disabled");
+  }
+
+  if (value <= 0) {
+    alert("Wpisano złą wartość w polu 'Kwota'!");
+    save.setAttribute("disabled");
   }
 
   const id = Date.now();
@@ -202,17 +209,13 @@ const addElement = (event, type) => {
     type: type,
   };
 
-  console.log(element);
-
   if (type === "INCOME") {
     incomes.push(element);
     renderInc(element);
-    console.log("income array: ", incomes);
   }
   if (type === "EXPENSE") {
     expenses.push(element);
     renderExp(element);
-    console.log("expenses array: ", expenses);
   }
 
   incomeName.value = "";

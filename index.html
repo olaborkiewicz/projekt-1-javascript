@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projekt 1 - JAVASCRIPT</title>
-    <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
@@ -20,36 +20,52 @@
       </div>
     </header>
     <section>
-      <div id="calculator"></div>
+      <div id="calculator" class="calc"></div>
     </section>
     <section class="table">
       <div class="table-container">
         <div class="left">
-          <div id="income-header">
+          <div id="income-header" class="inc-header">
             <p>PRZYCHODY</p>
-            <form id="inc-form">
+            <form id="inc-form" class="income-form">
               <input
                 id="income-name"
-                placeholder="Nazwa przychodu"
+                class="inc-name"
+                placeholder="Nazwa"
                 type="text"
               />
-              <input id="income-value" placeholder="Kwota" type="number" />
-              <button id="button-add" type="submit">Dodaj</button>
+              <input
+                id="income-value"
+                class="inc-value"
+                placeholder="Kwota"
+                type="number"
+              />
+              <button id="button-add" class="btn-add" type="submit">
+                Dodaj
+              </button>
             </form>
           </div>
-          <ul id="income-list"></ul>
+          <ul id="income-list" class="inc-list"></ul>
         </div>
         <div class="right">
-          <div id="expenses-header">
+          <div id="expenses-header" class="exp-header">
             <p>WYDATKI</p>
-            <form id="exp-form">
+            <form id="exp-form" class="expenses-form">
               <input
                 id="expenses-name"
-                placeholder="Nazwa wydatku"
+                class="exp-name"
+                placeholder="Nazwa"
                 type="text"
               />
-              <input id="expenses-value" placeholder="Kwota" type="number" />
-              <button id="button-add" type="submit">Dodaj</button>
+              <input
+                id="expenses-value"
+                class="exp-value"
+                placeholder="Kwota"
+                type="number"
+              />
+              <button id="button-add" class="btn-add" type="submit">
+                Dodaj
+              </button>
             </form>
           </div>
           <ul id="expenses-list"></ul>
@@ -57,10 +73,10 @@
       </div>
       <div class="sum-container">
         <div class="left-sum">
-          <div id="income-sum">Suma przychodów</div>
+          <div id="income-sum" class="inc-sum">Suma przychodów</div>
         </div>
         <div class="right-sum">
-          <div id="expenses-sum">Suma wydatków</div>
+          <div id="expenses-sum" class="exp-sum">Suma wydatków</div>
         </div>
       </div>
     </section>

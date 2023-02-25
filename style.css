@@ -9,7 +9,7 @@ body {
   margin: 50px auto;
 }
 
-#calculator {
+.calc {
   display: flex;
   width: 95vw;
   height: 50px;
@@ -73,8 +73,8 @@ body {
   border-left: none;
 }
 
-#income-header,
-#expenses-header {
+.inc-header,
+.exp-header {
   width: 100%;
   font-size: 20px;
   color: #000;
@@ -83,24 +83,24 @@ body {
   font-weight: 500;
 }
 
-#inc-form,
-#exp-form {
+.income-form,
+.expenses-form {
   display: flex;
   flex-direction: column;
   padding-right: 20px;
 }
 
-#income-name,
-#expenses-name {
+.inc-name,
+.exp-name {
   margin-bottom: 8px;
 }
 
-#income-value,
-#expenses-value {
+.inc-value,
+.exp-value {
   margin-bottom: 15px;
 }
 
-#button-add {
+.btn-add {
   width: 100px;
   margin-left: 25px;
   margin: 0 auto;
@@ -116,7 +116,7 @@ body {
   margin-right: 10px;
 }
 
-#button-add,
+.btn-add,
 .button,
 .button-save {
   height: 25px;
@@ -124,8 +124,8 @@ body {
   border-color: azure;
 }
 
-#income-sum,
-#expenses-sum {
+.inc-sum,
+.exp-sum {
   display: flex;
   font-size: 12px;
   font-weight: 700;
@@ -136,10 +136,8 @@ body {
   display: flex;
 }
 
-#income-list,
-#expenses-list,
-#edited-inc,
-#edited-exp {
+.inc-list,
+.exp-list {
   margin-bottom: 20px;
   padding: 0;
 }
@@ -178,14 +176,14 @@ body {
     margin-right: 40px;
   }
 
-  #income-sum,
-  #expenses-sum {
+  .inc-sum,
+  .exp-sum {
     font-size: 20px;
   }
 }
 
 @media only screen and (min-width: 1024px) {
-  #calculator {
+  .calc {
     display: flex;
     width: 700px;
   }
@@ -204,8 +202,8 @@ body {
     width: 1000px;
   }
 
-  #inc-form,
-  #exp-form {
+  .income-form,
+  .expenses-form {
     display: block;
   }
 
@@ -225,8 +223,8 @@ body {
     margin-left: 15px;
   }
 
-  #income-sum,
-  #expenses-sum {
+  .inc-sum,
+  .exp-sum {
     display: flex;
     font-size: 20px;
   }
