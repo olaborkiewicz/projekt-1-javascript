@@ -160,13 +160,6 @@ body {
     font-size: 20px;
   }
 
-  .sum-container {
-    display: flex;
-    width: 95vw;
-    height: 50px;
-    margin: 0 auto;
-  }
-
   .button-save {
     width: 100px;
   }
@@ -184,7 +177,6 @@ body {
 
 @media only screen and (min-width: 1024px) {
   .calc {
-    display: flex;
     width: 700px;
   }
 
@@ -192,13 +184,8 @@ body {
     font-size: 20px;
   }
 
-  .table-container {
-    display: flex;
-    width: 1000px;
-  }
-
+  .table-container,
   .sum-container {
-    display: flex;
     width: 1000px;
   }
 
@@ -225,7 +212,6 @@ body {
 
   .inc-sum,
   .exp-sum {
-    display: flex;
     font-size: 20px;
   }
 
@@ -235,7 +221,6 @@ body {
 
   .incList,
   .expList {
-    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;

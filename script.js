@@ -2,12 +2,10 @@ let incomes = [];
 let expenses = [];
 
 const calculator = document.querySelector("#calculator");
-const incomeHeader = document.querySelector("#income-header");
 const incomeName = document.querySelector("#income-name");
 const incomeValue = document.querySelector("#income-value");
 const incomeList = document.querySelector("#income-list");
 const incomeSum = document.querySelector("#income-sum");
-const expensesHeader = document.querySelector("#expenses-header");
 const expensesName = document.querySelector("#expenses-name");
 const expensesValue = document.querySelector("#expenses-value");
 const expensesList = document.querySelector("#expenses-list");
