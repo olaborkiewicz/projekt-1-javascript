@@ -11,8 +11,8 @@
 ## Project Overview 🎉
 
 
-This is my own project of a HTML website, made for portfolio. 
-I've used two languages - HTML and CSS. 
+This is my own project of a website, which allows you to calculate your incomes and expenses. Website made for portfolio. 
+I've used three languages - JavaScript, HTML and CSS. 
 
 
 
