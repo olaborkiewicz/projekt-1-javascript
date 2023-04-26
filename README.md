@@ -2,7 +2,7 @@
 
 </h1>
 
-<h4 align="center">HTML Website Project</h4>
+<h4 align="center">Calculator JS Website Project</h4>
 
 
 
